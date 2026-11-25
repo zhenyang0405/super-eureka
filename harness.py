@@ -46,8 +46,10 @@ import taskbridge
 HERE = pathlib.Path(__file__).resolve().parent
 # npm ci, from package-lock.json
 PI = shutil.which("pi") or str(HERE / "node_modules" / ".bin" / "pi")
-# pi's --thinking level: off, minimal, low, medium, high, xhigh or max
-THINKING = "max"
+# pi's --thinking level: off, minimal, low, medium, high, xhigh or max. Set it
+# with THINKING under `env:` in submission.yaml so a model swap needs no code
+# change ("high" is the top level for Gemini; "max" for Claude and GLM).
+THINKING = os.environ.get("THINKING", "high")
 # stop pi this long before the deadline (less on short tasks) so its answer
 # arrives
 STOP_BEFORE_SEC = 90
