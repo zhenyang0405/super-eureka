@@ -12,10 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: my-harness
-model_api: google-cloud/claude-opus-5-5
+name: super-eureka
+model_api: google-cloud/gemini-3.8-flash
 install: >-
   npm ci --prefix {src} --no-fund --no-audit
   && uv venv --python 3.12 /opt/harness/venv
   && uv pip install --python /opt/harness/venv/bin/python -r {src}/requirements.txt
 serve: /opt/harness/venv/bin/python {src}/serve.py
+env:
+  # pi --thinking level: off, minimal, low, medium, high, xhigh or max.
+  # "high" is the top level for Gemini models; use "max" for Claude or GLM.
+  THINKING: "high"
